@@ -10,12 +10,14 @@
     require "API_REST/APIURL.php";
 
 
+    //Funzione per acquisire il json dal REST Slim con metodo http GET
     function getJson($page)
     {
         $baseUrl = (new APIURL())->getBASEURL();
         return file_get_contents($baseUrl . $page);
     }
 
+    //Funzione per creare il campo POST in base alla pagina desiderata
     function chackPage($page, $idattore, $password, $tipo, $nome, $cognome){
 
         $arr = array();
@@ -52,6 +54,7 @@
 
     }
 
+    //Funzione per acquisire il json dal REST Slim con metodo http POST
     function postJson($page, $idattore, $password, $tipo, $nome, $cognome)
     {
 
@@ -75,6 +78,8 @@
 
     }
 
+
+    //Funzione per acquisire il json dal REST Slim con metodo http DELETE
     function deleteJson($page, $idattore)
     {
 
@@ -95,9 +100,11 @@
         return file_get_contents($baseUrl . $page ."/".$idattore, false, $context);
 
     }
-
-    //$json = getJson("listaUtenti");
-    //$json = postJson("insert", "dba_id3", "Password1", "DBA", "PHP", "Script");
+    //Test get REST
+    $json = getJson("listaUtenti");
+    //Test post REST
+    $json = postJson("insert", "dba_id3", "Password1", "DBA", "PHP", "Script");
+    //Test delete REST
     $json = deleteJson("delete", "dba_id2");
 
     $obj = json_decode($json);
@@ -134,22 +141,8 @@
         <!-- Gestione del responsive (vedi http://www.html.it/pag/33420/il-meta-tag-viewport/) -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/stili-custom.css" media="screen"> <!-- Stile personalizzato che sovrascrive quello di bootstrap -->
-        <!-- Modernizr: HTML5 per IE -->
-        <!--script src="../js/modernizr.custom.js"></script-->
-        <!-- respond.js per IE8 -->
-        <!--[if lt IE 9]>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- Script da caricare, meglio qui così la grafica appare prima all'utente -->
         <!-- jQuery e plugin JavaScript  -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
     </head>
